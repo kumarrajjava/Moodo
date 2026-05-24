@@ -7,14 +7,20 @@ public class JournalEntry {
     private String mood;
     private String colorHex;
     private long timestamp;
+    private boolean pinned;
 
     public JournalEntry(long id, String title, String content, String mood, String colorHex, long timestamp) {
+        this(id, title, content, mood, colorHex, timestamp, false);
+    }
+
+    public JournalEntry(long id, String title, String content, String mood, String colorHex, long timestamp, boolean pinned) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.mood = mood;
         this.colorHex = colorHex;
         this.timestamp = timestamp;
+        this.pinned = pinned;
     }
 
     public long getId() {
@@ -43,5 +49,21 @@ public class JournalEntry {
 
     public long getTimestamp() {
         return timestamp;
+    }
+
+    public boolean isPinned() {
+        return pinned;
+    }
+
+    public void setPinned(boolean pinned) {
+        this.pinned = pinned;
+    }
+
+    public int getWordCount() {
+        return JournalUtils.countWords(content);
+    }
+
+    public int getReadingTimeMinutes() {
+        return JournalUtils.readingTimeMinutes(getWordCount());
     }
 }

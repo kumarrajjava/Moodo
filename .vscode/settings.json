@@ -1,0 +1,11 @@
+{
+  "androidEmulatorLauncher.adbPath": "C:\\Users\\rajku\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+  "androidEmulatorLauncher.emulatorPath": "C:\\Users\\rajku\\AppData\\Local\\Android\\Sdk\\emulator\\emulator.exe",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "C:\\Program Files\\Java\\jdk-17",
+      "default": true
+    }
+  ]
+}

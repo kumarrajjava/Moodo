@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="journal_background">#121212</color>
+    <color name="white">#FF1E1E1E</color>
+    <color name="journal_primary_light">#1A3A5C</color>
+</resources>

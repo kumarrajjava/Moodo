@@ -1,13 +1,84 @@
 <resources>
     <string name="app_name">Micro Journal</string>
+    <string name="app_tagline">Track your thoughts, one micro-moment at a time</string>
+    <string name="splash_footer">Your private space for reflection</string>
+
     <string name="add_entry">Add Entry</string>
     <string name="edit_entry">Edit Entry</string>
     <string name="journal_title_hint">Enter Title...</string>
     <string name="journal_content_hint">Start writing your thoughts...</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="back">Back</string>
+
     <string name="mood_filter_all">All Moods</string>
     <string name="search_hint">Search journal entries...</string>
     <string name="empty_journal_heading">Your mind is an open space</string>
-    <string name="empty_journal_subheading">Tap the button below to record your first micro-journal entry.</string>
+    <string name="empty_journal_subheading">Tap the + button to record your first micro-journal entry.</string>
+    <string name="empty_filter_heading">No entries match</string>
+    <string name="empty_filter_subheading">Try a different mood filter or clear your search.</string>
+
+    <string name="streak_label">Day Streak</string>
+    <string name="total_entries_label">Total Entries</string>
+    <string name="dominant_mood_label">Top Mood</string>
+    <string name="daily_prompt_title">Today\'s Writing Prompt</string>
+    <string name="daily_prompt_cta">Write with this prompt →</string>
+    <string name="on_this_day_title">On This Day</string>
+    <string name="on_this_day_format">📅 %1$s — %2$s</string>
+
+    <string name="export_journal">Export Backup</string>
+    <string name="export_subject">Micro Journal Backup</string>
+    <string name="export_empty">No entries to export yet.</string>
+    <string name="swipe_delete_hint">Swipe left to delete · Long press for more options</string>
+    <string name="pin_entry">Pin Entry</string>
+    <string name="unpin_entry">Unpin Entry</string>
+    <string name="share_entry">Share Entry</string>
+    <string name="edit_thoughts">Edit Thoughts</string>
+    <string name="delete_thoughts">Delete Thoughts</string>
+    <string name="share_entry_footer">Written with Micro Journal</string>
+
+    <string name="word_count_format">%1$d words · ~%2$d min read</string>
+    <string name="word_count_zero">0 words</string>
+    <string name="no_dominant_mood">—</string>
+    <string name="streak_message_zero">Start your streak today!</string>
+    <string name="streak_message_active">Keep it going — you\'re on fire!</string>
+
+    <string name="pinned_toast">Pinned to top</string>
+    <string name="unpinned_toast">Unpinned</string>
+    <string name="entry_deleted">Entry deleted.</string>
+    <string name="delete_error">Error deleting entry.</string>
+    <string name="delete_confirm_title">Delete Permanently?</string>
+    <string name="delete_confirm_message">Are you sure you want to permanently delete \"%1$s\"? This cannot be undone.</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_get_started">Get Started</string>
+    <string name="onboarding_step_format">%1$d of %2$d</string>
+    <string name="onboarding_title_1">Welcome to Micro Journal</string>
+    <string name="onboarding_desc_1">Capture your thoughts in seconds. No pressure, no long essays — just honest micro-moments.</string>
+    <string name="onboarding_title_2">Track Your Mood</string>
+    <string name="onboarding_desc_2">Tag how you feel and watch patterns emerge over time with beautiful mood insights.</string>
+    <string name="onboarding_title_3">Build Your Streak</string>
+    <string name="onboarding_desc_3">Write daily, earn streaks, and rediscover memories with On This Day reflections.</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+    <string name="settings_dark_mode_desc">Easier on the eyes at night</string>
+    <string name="settings_export">Export Journal Backup</string>
+    <string name="settings_privacy">Privacy Policy</string>
+    <string name="settings_about">About Micro Journal</string>
+    <string name="settings_clear_data">Clear All Journal Data</string>
+    <string name="settings_version_format">Version %1$s</string>
+    <string name="clear_data_title">Clear all data?</string>
+    <string name="clear_data_message">This permanently deletes every journal entry on this device. Export a backup first if you need one.</string>
+    <string name="clear_data_confirm">Clear Everything</string>
+    <string name="clear_data_done">All entries cleared.</string>
+    <string name="clear_data_empty">Nothing to clear.</string>
+
+    <string name="about_dialog_text">Micro Journal helps you capture daily thoughts, track moods, and build mindful reflection habits.\n\nVersion %1$s\n\nMade with care for your mental wellness.</string>
+
+    <string name="privacy_policy_text">Privacy Policy for Micro Journal\n\nLast updated: May 2026\n\n1. Data Storage\nAll journal entries are stored locally on your device. We do not upload your personal writings to any server.\n\n2. Data Collection\nMicro Journal does not collect personal information, analytics, or usage tracking.\n\n3. Backups\nWhen you export a backup, you choose where to share or save the file. We have no access to exported data.\n\n4. Permissions\nThe app does not require internet, location, camera, or contacts permissions.\n\n5. Children\nThis app is suitable for general audiences. Parental guidance is recommended for users under 13.\n\n6. Contact\nFor privacy questions, contact the developer through the Play Store listing.\n\n7. Changes\nWe may update this policy. Continued use of the app means you accept the updated policy.</string>
 </resources>

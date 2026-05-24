@@ -12,5 +12,11 @@
         <item name="colorOnSecondary">@android:color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:windowBackground">@color/journal_background</item>
+    </style>
+
+    <style name="Theme.MyApplication.Splash" parent="Theme.MyApplication">
+        <item name="android:windowBackground">@color/journal_primary</item>
+        <item name="android:statusBarColor">@color/journal_primary</item>
     </style>
 </resources>

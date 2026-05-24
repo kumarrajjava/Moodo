@@ -7,19 +7,22 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalViewHolder> {
 
-    private List<JournalEntry> entries;
+    private List<JournalEntry> entries = new ArrayList<>();
     private final OnEntryClickListener clickListener;
     private final OnEntryLongClickListener longClickListener;
 
@@ -32,14 +35,24 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
     }
 
     public JournalAdapter(List<JournalEntry> entries, OnEntryClickListener clickListener, OnEntryLongClickListener longClickListener) {
-        this.entries = entries;
+        if (entries != null) {
+            this.entries = entries;
+        }
         this.clickListener = clickListener;
         this.longClickListener = longClickListener;
     }
 
     public void updateList(List<JournalEntry> newEntries) {
-        this.entries = newEntries;
+        this.entries = newEntries != null ? newEntries : new ArrayList<>();
         notifyDataSetChanged();
+    }
+
+    @Nullable
+    public JournalEntry getEntryAt(int position) {
+        if (position < 0 || position >= entries.size()) {
+            return null;
+        }
+        return entries.get(position);
     }
 
     @NonNull
@@ -51,13 +64,12 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
 
     @Override
     public void onBindViewHolder(@NonNull JournalViewHolder holder, int position) {
-        JournalEntry entry = entries.get(position);
-        holder.bind(entry, clickListener, longClickListener);
+        holder.bind(entries.get(position), clickListener, longClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return entries != null ? entries.size() : 0;
+        return entries.size();
     }
 
     static class JournalViewHolder extends RecyclerView.ViewHolder {
@@ -66,6 +78,8 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
         private final TextView textContent;
         private final TextView textMood;
         private final TextView textDate;
+        private final TextView textMeta;
+        private final ImageView iconPinned;
         private final LinearLayout layoutMoodBadge;
         private final Context context;
 
@@ -77,16 +91,26 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
             textContent = itemView.findViewById(R.id.text_entry_content);
             textMood = itemView.findViewById(R.id.text_entry_mood);
             textDate = itemView.findViewById(R.id.text_entry_date);
+            textMeta = itemView.findViewById(R.id.text_entry_meta);
+            iconPinned = itemView.findViewById(R.id.icon_pinned);
             layoutMoodBadge = itemView.findViewById(R.id.layout_mood_badge);
         }
 
         public void bind(final JournalEntry entry, final OnEntryClickListener clickListener, final OnEntryLongClickListener longClickListener) {
             textTitle.setText(entry.getTitle());
             textContent.setText(entry.getContent());
-            textMood.setText(getMoodEmojiText(entry.getMood()));
+            textMood.setText(JournalUtils.moodWithEmoji(entry.getMood()));
             textDate.setText(formatDate(entry.getTimestamp()));
 
-            // Update entire Card Background color to saved color preference
+            int words = entry.getWordCount();
+            if (words == 0) {
+                textMeta.setText(R.string.word_count_zero);
+            } else {
+                textMeta.setText(context.getString(R.string.word_count_format, words, entry.getReadingTimeMinutes()));
+            }
+
+            iconPinned.setVisibility(entry.isPinned() ? View.VISIBLE : View.GONE);
+
             try {
                 int cardBgColor = Color.parseColor(entry.getColorHex());
                 cardEntry.setCardBackgroundColor(ColorStateList.valueOf(cardBgColor));
@@ -94,17 +118,22 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
                 cardEntry.setCardBackgroundColor(ColorStateList.valueOf(Color.WHITE));
             }
 
-            // Color-code the mood badge
+            if (entry.isPinned()) {
+                cardEntry.setStrokeWidth((int) (2 * context.getResources().getDisplayMetrics().density));
+                cardEntry.setStrokeColor(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.journal_primary)));
+            } else {
+                cardEntry.setStrokeWidth((int) (1 * context.getResources().getDisplayMetrics().density));
+                cardEntry.setStrokeColor(ColorStateList.valueOf(0x08000000));
+            }
+
             styleMoodBadge(entry.getMood());
 
-            // Click listener
             itemView.setOnClickListener(v -> {
                 if (clickListener != null) {
                     clickListener.onEntryClick(entry);
                 }
             });
 
-            // Long click to edit/delete
             itemView.setOnLongClickListener(v -> {
                 if (longClickListener != null) {
                     longClickListener.onEntryLongClick(entry);
@@ -112,18 +141,6 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
                 }
                 return false;
             });
-        }
-
-        private String getMoodEmojiText(String mood) {
-            switch (mood) {
-                case "Happy": return "Happy 🌟";
-                case "Calm": return "Calm 🍃";
-                case "Thoughtful": return "Thoughtful 🤔";
-                case "Energetic": return "Energetic ⚡";
-                case "Grateful": return "Grateful 🙏";
-                case "Anxious": return "Anxious 😟";
-                default: return mood;
-            }
         }
 
         private void styleMoodBadge(String mood) {
@@ -166,7 +183,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalV
         }
 
         private String formatDate(long timestamp) {
-            Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+            Calendar cal = Calendar.getInstance(Locale.getDefault());
             cal.setTimeInMillis(timestamp);
             return DateFormat.format("MMM dd, yyyy · hh:mm a", cal).toString();
         }

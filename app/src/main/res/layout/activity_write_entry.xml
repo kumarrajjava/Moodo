@@ -109,6 +109,16 @@
                         android:textSize="16sp"
                         android:lineSpacingMultiplier="1.2" />
 
+                    <TextView
+                        android:id="@+id/text_word_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_gravity="end"
+                        android:text="0 words"
+                        android:textColor="#AAAAAA"
+                        android:textSize="12sp" />
+
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -243,6 +253,16 @@
                     android:layout_marginEnd="12dp"
                     android:background="@drawable/bg_circle"
                     android:backgroundTint="@color/bg_mood_calm"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/color_selector_thoughtful"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/bg_mood_thoughtful"
                     android:clickable="true"
                     android:focusable="true"/>
 

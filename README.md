@@ -1,21 +1,62 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Micro Journal
 
-# Run and deploy your AI Studio app
+A beautiful, privacy-first micro-journaling app for Android. Capture daily thoughts, track moods, build streaks, and reflect on memories — all stored locally on your device.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/6cc952df-cba3-4c03-bd22-2dfddbc6f64c
+- **Quick journaling** — Title, rich content, mood tags, and pastel canvas colors
+- **Mood insights** — Weekly mood distribution dashboard
+- **Writing streaks** — Stay motivated with daily streak tracking
+- **Daily prompts** — Rotating inspiration to start writing
+- **On This Day** — Rediscover entries from this date in past years
+- **Pin favorites** — Keep important entries at the top
+- **Search & filter** — Find entries by text or mood
+- **Swipe to delete** — With undo support
+- **Share entries** — Send reflections to friends or notes apps
+- **JSON export** — Full backup you control
+- **Dark mode** — Easy on the eyes at night
+- **Onboarding** — Polished first-run experience
+- **Privacy-first** — No accounts, no cloud, no tracking
 
-## Run Locally
+## Play Store Listing (draft)
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+**Short description:**  
+Capture daily thoughts & moods in seconds. Private, offline micro-journal.
 
+**Full description:**  
+Micro Journal is your personal space for quick, honest reflection. Write micro-entries in seconds, tag how you feel, and watch your emotional patterns emerge over time.
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
+✨ Write with beautiful pastel canvases  
+📊 Mood insights & writing streaks  
+📅 "On This Day" memories  
+🔒 100% private — data stays on your device  
+🌙 Dark mode included  
+📤 Export & share when you want  
+
+No sign-up. No ads. No internet required.
+
+## Build & Run
+
+```bash
+# Requires Android SDK + JDK 17
+./gradlew installDebug
+```
+
+## Release Checklist
+
+- [ ] Create upload keystore (`my-upload-key.jks`) and set env vars: `KEYSTORE_PATH`, `STORE_PASSWORD`, `KEY_PASSWORD`
+- [ ] Add Play Store screenshots (phone + tablet)
+- [ ] Host privacy policy URL (text included in-app under Settings)
+- [ ] Fill Play Console content rating questionnaire
+- [ ] Run `./gradlew bundleRelease` for AAB upload
+
+## Tech Stack
+
+- Java + XML layouts
+- SQLite local database
+- Material Design 3
+- Min SDK 24, Target SDK 36
+
+## License
+
+All rights reserved.

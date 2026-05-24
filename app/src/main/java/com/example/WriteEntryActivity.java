@@ -1,15 +1,17 @@
 package com.example;
 
-import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -20,9 +22,11 @@ import java.util.Map;
 public class WriteEntryActivity extends AppCompatActivity {
 
     public static final String EXTRA_ENTRY_ID = "com.example.EXTRA_ENTRY_ID";
+    public static final String EXTRA_PROMPT = "com.example.EXTRA_PROMPT";
 
     private EditText editTitle;
     private EditText editContent;
+    private TextView textWordCount;
     private ImageButton btnBack;
     private Button btnSave;
     private Button btnCancel;
@@ -42,6 +46,7 @@ public class WriteEntryActivity extends AppCompatActivity {
     private View colorWhite;
     private View colorPeach;
     private View colorMint;
+    private View colorThoughtful;
     private View colorRose;
     private View colorBlue;
     private View colorLavender;
@@ -73,6 +78,7 @@ public class WriteEntryActivity extends AppCompatActivity {
         // Bind layouts
         editTitle = findViewById(R.id.edit_entry_title);
         editContent = findViewById(R.id.edit_entry_content);
+        textWordCount = findViewById(R.id.text_word_count);
         btnBack = findViewById(R.id.btn_back);
         btnSave = findViewById(R.id.btn_save);
         btnCancel = findViewById(R.id.btn_cancel);
@@ -92,13 +98,15 @@ public class WriteEntryActivity extends AppCompatActivity {
         colorWhite = findViewById(R.id.color_selector_white);
         colorPeach = findViewById(R.id.color_selector_peach);
         colorMint = findViewById(R.id.color_selector_mint);
+        colorThoughtful = findViewById(R.id.color_selector_thoughtful);
         colorRose = findViewById(R.id.color_selector_rose);
         colorBlue = findViewById(R.id.color_selector_blue);
         colorLavender = findViewById(R.id.color_selector_lavender);
-        colorSelectors = new View[]{colorWhite, colorPeach, colorMint, colorRose, colorBlue, colorLavender};
+        colorSelectors = new View[]{colorWhite, colorPeach, colorMint, colorThoughtful, colorRose, colorBlue, colorLavender};
 
         setupMoodClickListeners();
         setupColorClickListeners();
+        setupWordCounter();
 
         // Check if editing or adding
         if (getIntent().hasExtra(EXTRA_ENTRY_ID)) {
@@ -110,19 +118,27 @@ public class WriteEntryActivity extends AppCompatActivity {
             loadEntryData(entryId);
         } else {
             textToolbarTitle.setText("New Thoughts");
-            // Highlight default mood Happy
             selectMood("Happy");
             updateCanvasColor("#FFFFFF");
+            if (getIntent().hasExtra(EXTRA_PROMPT)) {
+                String prompt = getIntent().getStringExtra(EXTRA_PROMPT);
+                if (prompt != null && !prompt.isEmpty()) {
+                    editContent.setText(prompt + "\n\n");
+                    editContent.setSelection(editContent.getText().length());
+                }
+            }
         }
 
-        // Toolbar back
-        btnBack.setOnClickListener(v -> onBackPressed());
-
-        // Cancel clicks
-        btnCancel.setOnClickListener(v -> onBackPressed());
-
-        // Save entry
+        btnBack.setOnClickListener(v -> handleBackNavigation());
+        btnCancel.setOnClickListener(v -> handleBackNavigation());
         btnSave.setOnClickListener(v -> saveEntry());
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                handleBackNavigation();
+            }
+        });
     }
 
     private void setupMoodClickListeners() {
@@ -134,10 +150,36 @@ public class WriteEntryActivity extends AppCompatActivity {
         btnMoodAnxious.setOnClickListener(v -> selectMoodAndCoordinateColor("Anxious"));
     }
 
+    private void setupWordCounter() {
+        editContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateWordCount(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+        updateWordCount(editContent.getText().toString());
+    }
+
+    private void updateWordCount(String text) {
+        int words = JournalUtils.countWords(text);
+        if (words == 0) {
+            textWordCount.setText(R.string.word_count_zero);
+        } else {
+            textWordCount.setText(getString(R.string.word_count_format, words, JournalUtils.readingTimeMinutes(words)));
+        }
+    }
+
     private void setupColorClickListeners() {
         colorWhite.setOnClickListener(v -> updateCanvasColor("#FFFFFF"));
         colorPeach.setOnClickListener(v -> updateCanvasColor("#FFF5CC"));
         colorMint.setOnClickListener(v -> updateCanvasColor("#E2F0D9"));
+        colorThoughtful.setOnClickListener(v -> updateCanvasColor("#E5E8EB"));
         colorRose.setOnClickListener(v -> updateCanvasColor("#FFE6E6"));
         colorBlue.setOnClickListener(v -> updateCanvasColor("#E1F0FF"));
         colorLavender.setOnClickListener(v -> updateCanvasColor("#F2E6FF"));
@@ -206,6 +248,7 @@ public class WriteEntryActivity extends AppCompatActivity {
             editContent.setText(entry.getContent());
             selectMood(entry.getMood());
             updateCanvasColor(entry.getColorHex());
+            updateWordCount(entry.getContent());
         } else {
             Toast.makeText(this, "Could not load journal data.", Toast.LENGTH_SHORT).show();
             finish();
@@ -250,26 +293,19 @@ public class WriteEntryActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
+    private void handleBackNavigation() {
         String title = editTitle.getText().toString().trim();
         String content = editContent.getText().toString().trim();
 
-        // If user has written something and hits back, double-check to prevent losing changes
         if (!title.isEmpty() || !content.isEmpty()) {
             new AlertDialog.Builder(this)
                     .setTitle("Discard Changes?")
                     .setMessage("Are you sure you want to exit without saving your journal?")
-                    .setPositiveButton("Discard", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            WriteEntryActivity.super.onBackPressed();
-                        }
-                    })
+                    .setPositiveButton("Discard", (dialog, which) -> finish())
                     .setNegativeButton("Keep Writing", null)
                     .show();
         } else {
-            super.onBackPressed();
+            finish();
         }
     }
 }
