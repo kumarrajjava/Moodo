@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/journal_background"
+    tools:context=".MainActivity">
+
+    <!-- Scrollable content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="88dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Elegant App Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="32dp"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/journal_primary"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.02" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Track your thoughts, one micro-moment at a time"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- Insights Analytics Card (Collapsible/Dynamic) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_insights"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#10000000"
+                app:cardBackgroundColor="@color/journal_primary_light"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Weekly Review Insights"
+                        android:textColor="@color/journal_primary"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.05" />
+
+                    <!-- Mood Distribution Count Row (Scrollable or Grid) -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingVertical="4dp">
+
+                            <!-- Happy Stat -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_mood_badge"
+                                android:elevation="1dp"
+                                android:paddingHorizontal="14dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:gravity="center">
+                                <TextView
+                                    android:id="@+id/stat_count_happy"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/text_mood_happy" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Happy 🌟"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_mood_happy" />
+                            </LinearLayout>
+
+                            <!-- Calm Stat -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_mood_badge"
+                                android:elevation="1dp"
+                                android:paddingHorizontal="14dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:gravity="center">
+                                <TextView
+                                    android:id="@+id/stat_count_calm"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/text_mood_calm" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Calm 🍃"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_mood_calm" />
+                            </LinearLayout>
+
+                            <!-- Thoughtful Stat -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_mood_badge"
+                                android:elevation="1dp"
+                                android:paddingHorizontal="14dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:gravity="center">
+                                <TextView
+                                    android:id="@+id/stat_count_thoughtful"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/text_mood_thoughtful" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Thoughtful 🤔"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_mood_thoughtful" />
+                            </LinearLayout>
+
+                            <!-- Energetic Stat -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_mood_badge"
+                                android:elevation="1dp"
+                                android:paddingHorizontal="14dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:gravity="center">
+                                <TextView
+                                    android:id="@+id/stat_count_energetic"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/text_mood_energetic" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Energetic ⚡"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_mood_energetic" />
+                            </LinearLayout>
+
+                            <!-- Grateful Stat -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_mood_badge"
+                                android:elevation="1dp"
+                                android:paddingHorizontal="14dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:gravity="center">
+                                <TextView
+                                    android:id="@+id/stat_count_grateful"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/text_mood_grateful" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Grateful 🙏"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_mood_grateful" />
+                            </LinearLayout>
+
+                            <!-- Anxious Stat -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/bg_mood_badge"
+                                android:elevation="1dp"
+                                android:paddingHorizontal="14dp"
+                                android:paddingVertical="8dp"
+                                android:gravity="center">
+                                <TextView
+                                    android:id="@+id/stat_count_anxious"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/text_mood_anxious" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Anxious 😟"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_mood_anxious" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Search Bar Packaged Cleanly in CardView -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_search"
+                        android:layout_marginEnd="10dp"
+                        android:contentDescription="Search Icon" />
+
+                    <EditText
+                        android:id="@+id/edit_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/search_hint"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:textColor="#333333"
+                        android:textColorHint="#999999"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Mood Filter Selector Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filter by Emotion"
+                android:textColor="#555555"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Horizontal Filter Chips Scroll -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layout_filter_chips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <Button
+                        android:id="@+id/btn_filter_all"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="6dp"
+                        android:paddingHorizontal="12dp"
+                        android:text="@string/mood_filter_all"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btn_filter_happy"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="6dp"
+                        android:paddingHorizontal="12dp"
+                        android:text="Happy 🌟"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btn_filter_calm"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="6dp"
+                        android:paddingHorizontal="12dp"
+                        android:text="Calm 🍃"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btn_filter_thoughtful"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="6dp"
+                        android:paddingHorizontal="12dp"
+                        android:text="Thoughtful 🤔"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btn_filter_energetic"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="6dp"
+                        android:paddingHorizontal="12dp"
+                        android:text="Energetic ⚡"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btn_filter_grateful"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="6dp"
+                        android:paddingHorizontal="12dp"
+                        android:text="Grateful 🙏"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btn_filter_anxious"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:paddingHorizontal="12dp"
+                        android:text="Anxious 😟"
+                        android:textSize="12sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Journal List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_journals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_journal_entry" />
+
+            <!-- Empty State Illustration & Description -->
+            <LinearLayout
+                android:id="@+id/layout_empty_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp"
+                android:layout_marginTop="32dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_journal_book"
+                    android:layout_marginBottom="16dp"
+                    android:alpha="0.8"
+                    android:contentDescription="Empty state book helper" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/empty_journal_heading"
+                    android:textColor="#333333"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/empty_journal_subheading"
+                    android:textColor="#888888"
+                    android:textSize="13sp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingMultiplier="1.2" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Action Button (FAB) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="24dp"
+        android:src="@drawable/ic_add"
+        app:tint="@color/white"
+        app:backgroundTint="@color/journal_primary"
+        android:contentDescription="Compose new entry" />
+
+</RelativeLayout>

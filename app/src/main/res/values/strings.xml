@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Micro Journal</string>
+    <string name="add_entry">Add Entry</string>
+    <string name="edit_entry">Edit Entry</string>
+    <string name="journal_title_hint">Enter Title...</string>
+    <string name="journal_content_hint">Start writing your thoughts...</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="mood_filter_all">All Moods</string>
+    <string name="search_hint">Search journal entries...</string>
+    <string name="empty_journal_heading">Your mind is an open space</string>
+    <string name="empty_journal_subheading">Tap the button below to record your first micro-journal entry.</string>
+</resources>

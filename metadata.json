@@ -1,0 +1,6 @@
+{
+  "name": "Micro Journal",
+  "description": "An elegant, micro-journaling app to quickly record, visualize, and track your daily moods and thoughts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

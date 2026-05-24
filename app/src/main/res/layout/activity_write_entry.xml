@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_write_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/journal_background">
+
+    <!-- Top Custom Toolbar -->
+    <RelativeLayout
+        android:id="@+id/toolbar_write"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/journal_primary"
+        android:paddingHorizontal="16dp"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back arrow Button" />
+
+        <TextView
+            android:id="@+id/text_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/btn_back"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:text="New Thoughts"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- Main Scrollable Composing Area -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout_bottom_actions"
+        android:layout_below="@id/toolbar_write"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Writing Pad Slate Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_writing_pad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#10000000"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <!-- Title input field -->
+                    <EditText
+                        android:id="@+id/edit_entry_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/journal_title_hint"
+                        android:inputType="textCapSentences"
+                        android:maxLines="2"
+                        android:textColor="#2A2A2A"
+                        android:textColorHint="#999999"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#15000000"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Content input field -->
+                    <EditText
+                        android:id="@+id/edit_entry_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="250dp"
+                        android:gravity="top|start"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/journal_content_hint"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:textColor="#444444"
+                        android:textColorHint="#AAAAAA"
+                        android:textSize="16sp"
+                        android:lineSpacingMultiplier="1.2" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Mood Badge Header Selector -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOW ARE YOU FEELING RIGHT NOW?"
+                android:textColor="#777777"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Mood Buttons Horizontal Selection -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layout_mood_selectors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="4dp"
+                    android:paddingHorizontal="4dp">
+
+                    <Button
+                        android:id="@+id/btn_mood_happy"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="6dp"
+                        android:text="Happy 🌟"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btn_mood_calm"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="6dp"
+                        android:text="Calm 🍃"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btn_mood_thoughtful"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="6dp"
+                        android:text="Thoughtful 🤔"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btn_mood_energetic"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="6dp"
+                        android:text="Energetic ⚡"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btn_mood_grateful"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="6dp"
+                        android:text="Grateful 🙏"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btn_mood_anxious"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:text="Anxious 😟"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Palette Selector Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHOOSE A BACKGROUND CANVAS"
+                android:textColor="#777777"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Circular Palette Selector Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp"
+                android:layout_marginBottom="16dp">
+
+                <View
+                    android:id="@+id/color_selector_white"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/white"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/color_selector_peach"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/bg_mood_happy"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/color_selector_mint"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/bg_mood_calm"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/color_selector_rose"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/bg_mood_energetic"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/color_selector_blue"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/bg_mood_grateful"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <View
+                    android:id="@+id/color_selector_lavender"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_circle"
+                    android:backgroundTint="@color/bg_mood_anxious"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Action Buttons Floating Bar -->
+    <LinearLayout
+        android:id="@+id/layout_bottom_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:elevation="8dp">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="@string/cancel"
+            android:textColor="#666666" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1.2"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/journal_primary"
+            android:text="@string/save"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</RelativeLayout>
