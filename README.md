@@ -1,4 +1,4 @@
-# ✨ Micro Journal
+# ✨ Moodo
 
 > Track your thoughts, one micro-moment at a time.
 
@@ -64,9 +64,9 @@ Moodo is a lightweight emotional well-being Android app designed to help users t
 
 ---
 
-# 💡 Why Micro Journal?
+# 💡 Why Moodo?
 
-Micro Journal was built to make journaling:
+Moodo was built to make journaling:
 - simple
 - calming
 - distraction-free
@@ -80,7 +80,7 @@ No ads. No tracking. No distractions.
 
 # 🧠 App Philosophy
 
-Micro Journal encourages:
+Moodo encourages:
 - mindful reflection
 - emotional awareness
 - consistency through micro-writing
