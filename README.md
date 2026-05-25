@@ -19,7 +19,7 @@ Capture daily reflections, track moods, build writing streaks, and rediscover me
 
 | Home Screen | Journal Editor | Mood Insights |
 |-------------|----------------|----------------|
-| ![](screenshots/home.png) | ![](screenshots/editor.png) | ![](screenshots/insights.png) |
+| ![](home.png) | ![](editor.png) | ![](insights.png) |
 
 > Add screenshots inside the `/screenshots` folder.
 
