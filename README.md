@@ -23,7 +23,7 @@ Moodo is a lightweight emotional well-being Android app designed to help users t
 
 ---
 
-![Moodo Logo](moodo-logo.png)
+![Moodo Logo](Moodo-logo.png)
 
 ---
 
