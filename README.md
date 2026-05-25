@@ -15,6 +15,18 @@ Capture daily reflections, track moods, build writing streaks, and rediscover me
 
 ---
 
+# 🌿 Moodo App (Bonus Project)
+
+> A minimal mood tracking + emotional wellness app
+
+Moodo is a lightweight emotional well-being Android app designed to help users track their daily moods, understand emotional patterns, and build mental clarity through simple logging.
+
+---
+
+![Moodo Logo](moodo-logo.png)
+
+---
+
 # 📸 Screenshots
 
 | Home Screen | Journal Editor | Mood Insights |
