@@ -144,4 +144,4 @@ Your thoughts stay yours.
 ## Clone Repository
 
 ```bash
-git clone https://github.com/kumarrajjava/micro-journal.git
+git clone https://github.com/kumarrajjava/Moodo.git
