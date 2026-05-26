@@ -1,62 +1,147 @@
-# Micro Journal
+# ✨ Moodo
 
-A beautiful, privacy-first micro-journaling app for Android. Capture daily thoughts, track moods, build streaks, and reflect on memories — all stored locally on your device.
+> Track your thoughts, one micro-moment at a time.
 
-## Features
+A beautiful privacy-first Android micro-journaling app built with Java + Material Design 3.  
+Capture daily reflections, track moods, build writing streaks, and rediscover memories — all stored securely on your device.
 
-- **Quick journaling** — Title, rich content, mood tags, and pastel canvas colors
-- **Mood insights** — Weekly mood distribution dashboard
-- **Writing streaks** — Stay motivated with daily streak tracking
-- **Daily prompts** — Rotating inspiration to start writing
-- **On This Day** — Rediscover entries from this date in past years
-- **Pin favorites** — Keep important entries at the top
-- **Search & filter** — Find entries by text or mood
-- **Swipe to delete** — With undo support
-- **Share entries** — Send reflections to friends or notes apps
-- **JSON export** — Full backup you control
-- **Dark mode** — Easy on the eyes at night
-- **Onboarding** — Polished first-run experience
-- **Privacy-first** — No accounts, no cloud, no tracking
+---
 
-## Play Store Listing (draft)
+![Platform](https://img.shields.io/badge/Platform-Android-blue)
+![Language](https://img.shields.io/badge/Language-Java-orange)
+![UI](https://img.shields.io/badge/UI-Material%203-green)
+![Storage](https://img.shields.io/badge/Database-SQLite-lightgrey)
+![Mode](https://img.shields.io/badge/Architecture-Offline--First-success)
 
-**Short description:**  
-Capture daily thoughts & moods in seconds. Private, offline micro-journal.
+---
 
-**Full description:**  
-Micro Journal is your personal space for quick, honest reflection. Write micro-entries in seconds, tag how you feel, and watch your emotional patterns emerge over time.
+# 🌿 Moodo App (Bonus Project)
 
-✨ Write with beautiful pastel canvases  
-📊 Mood insights & writing streaks  
-📅 "On This Day" memories  
-🔒 100% private — data stays on your device  
-🌙 Dark mode included  
-📤 Export & share when you want  
+> A minimal mood tracking + emotional wellness app
 
-No sign-up. No ads. No internet required.
+Moodo is a lightweight emotional well-being Android app designed to help users track their daily moods, understand emotional patterns, and build mental clarity through simple logging.
 
-## Build & Run
+---
+
+![Moodo Logo](Moodologo.png)
+
+---
+
+# 📸 Screenshots
+
+| Home Screen | Journal Editor | Mood Insights |
+|-------------|----------------|----------------|
+| ![](home.png) | ![](editor.png) | ![](insights.png) |
+
+
+---
+
+# 🎥 Demo
+
+![](screenshots/demo.gif)
+
+> Record a short screen demo and export it as GIF for a premium GitHub look.
+
+---
+
+# ✨ Features
+
+- 📝 Quick journaling with title & reflection writing
+- 🎨 Beautiful pastel canvas backgrounds
+- 😊 Mood tracking with emotion tags
+- 🔥 Daily writing streak system
+- 📊 Weekly mood insights dashboard
+- 💡 Daily writing prompts
+- 📅 “On This Day” memory resurfacing
+- 📌 Pin favorite reflections
+- 🔍 Powerful search & mood filtering
+- ↩️ Swipe to delete with undo support
+- 📤 Share reflections instantly
+- 💾 JSON export backup support
+- 🌙 Dark mode support
+- 🚀 Smooth onboarding experience
+- 🔒 Privacy-first offline journaling
+
+---
+
+# 💡 Why Moodo?
+
+Moodo was built to make journaling:
+- simple
+- calming
+- distraction-free
+- emotionally reflective
+
+Instead of writing long diary pages, users can quickly capture small emotional moments throughout the day and build self-awareness over time.
+
+No ads. No tracking. No distractions.
+
+---
+
+# 🧠 App Philosophy
+
+Moodo encourages:
+- mindful reflection
+- emotional awareness
+- consistency through micro-writing
+- private self-expression
+
+The app is intentionally lightweight, peaceful, and fully offline.
+
+Your thoughts stay yours.
+
+---
+
+# 🏗️ Architecture
+
+- Offline-first architecture
+- SQLite local persistence
+- Java + XML Android development
+- Material Design 3 components
+- MVVM-inspired structure
+- RecyclerView-based journal feed
+- Modular utility/helper classes
+
+---
+
+# 🛠️ Tech Stack
+
+## Android
+- Java
+- XML Layouts
+- Android SDK
+
+## UI/UX
+- Material Design 3
+- Pastel-inspired interface
+- Dark mode support
+
+## Storage
+- SQLite local database
+- JSON export system
+
+---
+
+# 📱 SDK Configuration
+
+| Config | Version |
+|--------|---------|
+| Min SDK | 24 |
+| Target SDK | 36 |
+
+---
+
+# 🚀 Installation
+
+## Requirements
+
+- Android Studio
+- Android SDK
+- JDK 17
+
+---
+
+## Clone Repository
 
 ```bash
-# Requires Android SDK + JDK 17
-./gradlew installDebug
-```
-
-## Release Checklist
-
-- [ ] Create upload keystore (`my-upload-key.jks`) and set env vars: `KEYSTORE_PATH`, `STORE_PASSWORD`, `KEY_PASSWORD`
-- [ ] Add Play Store screenshots (phone + tablet)
-- [ ] Host privacy policy URL (text included in-app under Settings)
-- [ ] Fill Play Console content rating questionnaire
-- [ ] Run `./gradlew bundleRelease` for AAB upload
-
-## Tech Stack
-
-- Java + XML layouts
-- SQLite local database
-- Material Design 3
-- Min SDK 24, Target SDK 36
-
-## License
-
-All rights reserved.
+git clone https://github.com/kumarrajjava/Moodo.git
