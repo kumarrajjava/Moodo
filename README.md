@@ -1,4 +1,4 @@
-# ✨ Moodo
+# Moodo ✨ 
 
 > Track your thoughts, one micro-moment at a time.
 
